@@ -1,6 +1,6 @@
 <?php
 
-abstract class EscherModel extends EscherObject {
+abstract class Model extends EscherObject {
 	protected $_schemaFields = array();
 	protected $_schemaKeys = array();
 	protected $_schemaTriggers = array();
@@ -116,7 +116,7 @@ abstract class EscherModel extends EscherObject {
 		// Note: Only new objects should have to iterate
 		foreach($sources as $s) {
 			$ds = Load::Datasource($s);
-			if ($id = $ds->set($this->_m(),$values,$options)) {
+			if ($id = $ds->set($this,$values,$options)) {
 				$this->_new = FALSE;
 				if ($this->_primaryKey() && !$this->id()) {
 					$this->setValues(array(
